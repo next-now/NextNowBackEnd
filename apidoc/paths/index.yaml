@@ -6,7 +6,7 @@
 /auth/login:
   $ref: './login.yaml'
 
-/initiaitve:
+/initiatives:
   $ref: './initiatives/initiatives.yaml'
-/initiaitve/{id}:
+/initiatives/{id}:
   $ref: './initiatives/initiatives-with-id.yaml'

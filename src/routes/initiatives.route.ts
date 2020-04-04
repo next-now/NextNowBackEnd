@@ -19,9 +19,9 @@ class InitiativesRoute implements Route {
     this.router.post(`${this.path}`, authMiddleware, validationMiddleware(CreateInitiativeDto), this.initiativeController.createInitiative);
 
     this.router.get(`${this.path}/:id(\\d+)`, authMiddleware, this.initiativeController.getInitiativeById);
-    this.router.put(`${this.path}/:id(\\d+)`, authMiddleware, validationMiddleware(CreateUserDto, true), this.initiativeController.updateInitiative);
+    this.router.put(`${this.path}/:id(\\d+)`, authMiddleware, validationMiddleware(CreateInitiativeDto, true), this.initiativeController.updateInitiative);
     this.router.delete(`${this.path}/:id(\\d+)`, authMiddleware, this.initiativeController.deleteInitiative);
   }
 }
 
-export default UsersRoute;
+export default InitiativesRoute;

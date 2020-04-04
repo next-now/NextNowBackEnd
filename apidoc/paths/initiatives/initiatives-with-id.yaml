@@ -13,7 +13,7 @@ get:
           schema:
             type: object
             items:
-              $ref: '../../definitions/initiatives/CreateInitiatives.yaml'
+              $ref: '../../definitions/initiatives/CreateInitiative.yaml'
     '400':
       description: bad input parameter
 put:
@@ -29,7 +29,7 @@ put:
     content:
       application/json:
         schema:
-          $ref: '../../definitions/initiatives/CreateInitiatives.yaml'
+          $ref: '../../definitions/initiatives/CreateInitiative.yaml'
   responses:
     '201':
       description: Updated

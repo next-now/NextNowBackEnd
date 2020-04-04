@@ -44,8 +44,8 @@ class InitiativesController {
     try {
       const originalData: Initiative = await this.initiativeService.findInitiativeById(initiativeId)
       InitiativesController.verifyUserHasAccess(originalData, user);
-      const updatedData: Initiative = await this.initiativeService.updateInitiative(initiativeId, user.id, initiativeDto);
-      res.status(200).json({ data: updatedData, message: 'updated' });
+      await this.initiativeService.updateInitiative(initiativeId, user.id, initiativeDto);
+      res.status(200).json({ message: 'updated' });
     } catch (error) {
       next(error);
     }

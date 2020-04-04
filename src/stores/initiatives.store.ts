@@ -19,15 +19,13 @@ class InitiativesStore {
 
     }
 
-    public async updateInitiative(initiativeData: Omit<Initiative, "id"|"userId">, id: number, userId: number ) : Promise<Initiative> {
-        const initiative: InitiativeModel = this.initiatives.update(initiativeData, { where: { id: id, userId: userId } });
-        return InitiativesStore.extractPureJSONObject(initiative);
-
+    public async updateInitiative(initiativeData: Omit<Initiative, "id"|"userId">, id: number) : Promise<void> {
+        await this.initiatives.update(initiativeData, { where: { id: id } });
+        return ;
     }
 
     public async removeInitiative(id: number, userId: number): Promise<void> {
-        this.initiatives.destroy({where: {id: id, userId: userId}});
+       await this.initiatives.destroy({where: {id: id, userId: userId}});
     }
 }
-
 export default InitiativesStore

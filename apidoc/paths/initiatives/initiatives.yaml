@@ -7,7 +7,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: '../../definitions/initiative/CreateInitiatives.yaml'
+          $ref: '../../definitions/initiatives/CreateInitiative.yaml'
   responses:
     '201':
       description: Created
