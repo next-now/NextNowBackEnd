@@ -10,3 +10,6 @@
   $ref: './initiatives/initiatives.yaml'
 /initiatives/{id}:
   $ref: './initiatives/initiatives-with-id.yaml'
+
+/vote/initiative/{id}:
+  $ref: './votes/votes-with-id.yaml'

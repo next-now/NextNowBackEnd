@@ -13,8 +13,8 @@ class InitiativesStore {
         return InitiativesStore.extractPureJSONObject(initiative);
     }
 
-    public async findInitiativeById(userId: number): Promise<Initiative> {
-        const initiative:InitiativeModel = await this.initiatives.findByPk(userId);
+    public async findInitiativeById(id: number): Promise<Initiative> {
+        const initiative:InitiativeModel = await this.initiatives.findByPk(id);
         return InitiativesStore.extractPureJSONObject(initiative);
 
     }

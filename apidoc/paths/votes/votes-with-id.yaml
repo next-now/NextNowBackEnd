@@ -1,0 +1,43 @@
+get:
+  tags:
+  - Votes
+  parameters:
+  - in: path
+    name: id
+    type: int
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: object
+            items:
+              result: boolean
+    '400':
+      description: bad input parameter
+put:
+  tags:
+    - Votes
+  parameters:
+    - in: path
+      name: id
+      type: int
+      required: true
+  responses:
+    '200':
+      description: voted
+
+
+delete:
+  tags:
+    - Votes
+  parameters:
+    - in: path
+      name: id
+      type: int
+      required: true
+  responses:
+    '200':
+      description: deleted
+
