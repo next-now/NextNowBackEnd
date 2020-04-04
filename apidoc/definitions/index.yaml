@@ -7,7 +7,10 @@ schemas:
     $ref: './login/EmailLoginInfo.yaml'
   UsernameLoginInfo:
     $ref: './login/UsernameLoginInfo.yaml'
-
+  Initiative:
+    $ref: './initiatives/Initiative.yaml'
+  CreateInitiative:
+    $ref: './initiatives/CreateInitiative.yaml'
 
 securitySchemes:
   ApiJWTAuth:        # arbitrary name for the security scheme

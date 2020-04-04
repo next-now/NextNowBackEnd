@@ -2,3 +2,5 @@
   description: Users CRUD
 - name: Auth
   description: Login
+- name: Initiatives
+  description: Positive deeds by the community for the community

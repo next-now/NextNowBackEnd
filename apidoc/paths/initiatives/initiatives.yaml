@@ -1,0 +1,13 @@
+post:
+  tags:
+  - Initiatives
+  summary: Create new Initiaitve
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../definitions/initiatives/CreateInitiative.yaml'
+  responses:
+    '201':
+      description: Created

@@ -1,0 +1,7 @@
+#User:
+  allOf:
+  - $ref: './CreateInitiative.yaml'
+  - type: object
+    properties:
+      id:
+        type: integer

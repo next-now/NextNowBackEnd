@@ -5,3 +5,8 @@
 
 /auth/login:
   $ref: './login.yaml'
+
+/initiatives:
+  $ref: './initiatives/initiatives.yaml'
+/initiatives/{id}:
+  $ref: './initiatives/initiatives-with-id.yaml'

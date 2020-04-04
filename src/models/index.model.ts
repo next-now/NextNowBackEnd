@@ -1,5 +1,6 @@
 import { Sequelize } from 'sequelize-typescript';
 import User from './users.model';
+import Initiative from "./initiative.model";
 
 export const sequelize = new Sequelize(
   process.env.MYSQL_DATABASE,
@@ -22,7 +23,7 @@ export const sequelize = new Sequelize(
   },
 );
 
-sequelize.addModels([User]);
+sequelize.addModels([User, Initiative]);
 
 sequelize.authenticate().catch((err: Error) => {
   console.error('Unable to connect to the database:', err);
