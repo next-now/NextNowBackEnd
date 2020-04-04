@@ -1,0 +1,13 @@
+#CreateUser:
+type: object
+required:
+- username
+- password
+properties:
+  username:
+    type: string
+    example: "HelpingHarry"
+  password:
+    type: string
+    format: password
+    example: "pretty strong password"
