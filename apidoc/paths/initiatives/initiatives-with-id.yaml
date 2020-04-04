@@ -1,0 +1,46 @@
+get:
+  tags:
+  - Initiatives
+  parameters:
+  - in: path
+    name: id
+    type: int
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: object
+            items:
+              $ref: '../../definitions/initiatives/CreateInitiatives.yaml'
+    '400':
+      description: bad input parameter
+put:
+  tags:
+    - Initiatives
+  parameters:
+    - in: path
+      name: id
+      type: int
+      required: true
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../definitions/initiatives/CreateInitiatives.yaml'
+  responses:
+    '201':
+      description: Updated
+delete:
+  tags:
+    - Initiatives
+  parameters:
+    - in: path
+      name: id
+      type: int
+      required: true
+  responses:
+    '201':
+      description: deleted

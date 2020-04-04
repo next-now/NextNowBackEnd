@@ -1,0 +1,12 @@
+#CreateUser:
+type: object
+required:
+- category
+- description
+properties:
+  category:
+    type: string
+    example: "Education"
+  description:
+    type: string
+    example: "Teaching monkeys to throw banana peel in organic wastebasket"
