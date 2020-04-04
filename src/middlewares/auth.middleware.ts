@@ -2,11 +2,11 @@ import { NextFunction, Response } from 'express';
 import * as jwt from 'jsonwebtoken';
 import HttpException from '../exceptions/HttpException';
 import {DataStoredInToken, RequestWithUser} from '../interfaces/auth.interface';
-import UsersStore from "../stores/users.store";
+import UserStore from "../stores/userStore";
 
 async function authMiddleware(req: RequestWithUser, res: Response, next: NextFunction) {
   const token = req.header("Authorization");
-  const userStore = new UsersStore();
+  const userStore = new UserStore();
   if (token) {
     const secret = process.env.JWT_SECRET;
 

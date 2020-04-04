@@ -1,12 +1,12 @@
 import * as bcrypt from 'bcrypt';
 import {CreatedUser, CreateUserDto} from '../dtos/users.dto';
 import HttpException from '../exceptions/HttpException';
-import {User} from '../interfaces/users.interface';
 import {isEmptyObject} from '../utils/util';
-import UsersStore from "../stores/users.store";
+import UserStore from "../stores/userStore";
+import {User} from "../interfaces/users.interface";
 
 class UserService {
-  public usersStore = new UsersStore();
+  public usersStore = new UserStore();
 
   public static extractUserWithoutPassword(user: User): CreatedUser
   {

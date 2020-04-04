@@ -1,0 +1,15 @@
+post:
+  tags:
+  - Auth
+  summary: Logi
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          oneOf:
+            - $ref: '../definitions/login/UsernameLoginInfo.yaml'
+            - $ref: '../definitions/login/EmailLoginInfo.yaml'
+  responses:
+    '201':
+      description: Created

@@ -1,2 +1,4 @@
 - name: Users
   description: Users CRUD
+- name: Auth
+  description: Login

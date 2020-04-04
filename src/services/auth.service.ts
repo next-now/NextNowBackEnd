@@ -5,7 +5,7 @@ import HttpException from '../exceptions/HttpException';
 import {DataStoredInToken, TokenData} from '../interfaces/auth.interface';
 import {User} from '../interfaces/users.interface';
 import {isEmptyObject} from '../utils/util';
-import UserStore from "../stores/users.store";
+import UserStore from "../stores/userStore";
 import UserService from "./users.service";
 
 class AuthService {

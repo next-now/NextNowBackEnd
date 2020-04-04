@@ -3,6 +3,11 @@ schemas:
     $ref: './user/User.yaml'
   CreateUser:
     $ref: './user/CreateUser.yaml'
+  EmailLoginInfo:
+    $ref: './login/EmailLoginInfo.yaml'
+  UsernameLoginInfo:
+    $ref: './login/UsernameLoginInfo.yaml'
+
 
 securitySchemes:
   ApiJWTAuth:        # arbitrary name for the security scheme
