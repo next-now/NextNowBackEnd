@@ -1,0 +1,24 @@
+get:
+  tags:
+  - Votes
+  parameters:
+  - in: path
+    name: id
+    type: int
+    required: true
+put:
+  tags:
+    - Votes
+  parameters:
+    - in: path
+      name: id
+      type: int
+      required: true
+delete:
+  tags:
+    - Votes
+  parameters:
+    - in: path
+      name: id
+      type: int
+      required: true

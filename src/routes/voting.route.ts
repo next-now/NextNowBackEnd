@@ -4,7 +4,7 @@ import authMiddleware from "../middlewares/auth.middleware";
 import VotingController from "../controllers/voting.controller";
 
 class VotingRouter implements Route {
-  public path = '/voting';
+  public path = '/vote';
   public router = Router();
 
   private votingController = new VotingController();
@@ -13,10 +13,10 @@ class VotingRouter implements Route {
   }
 
   private initializeRoutes() {
-    this.router.get(`${this.path}`, authMiddleware, this.votingController.getVote);
+    this.router.get(`${this.path}/initiative/:id(\\d+)`, authMiddleware, this.votingController.getVote);
 
-    this.router.put(`${this.path}/:id(\\d+)`, authMiddleware, this.votingController.addVote);
-    this.router.delete(`${this.path}/:id(\\d+)`, authMiddleware, this.votingController.removeVote);
+    this.router.put(`${this.path}/initiative/:id(\\d+)`, authMiddleware, this.votingController.addVote);
+    this.router.delete(`${this.path}/initiative/:id(\\d+)`, authMiddleware, this.votingController.removeVote);
   }
 }
 

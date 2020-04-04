@@ -4,3 +4,5 @@
   description: Login
 - name: Initiatives
   description: Positive deeds by the community for the community
+- name: Votes
+  description: Community votes fo initiatives
