@@ -21,7 +21,7 @@ class InitiativeService {
   public async createInitiative(initiativeDto: CreateInitiativeDto, userId: number): Promise<Initiative> {
     if (isEmptyObject(initiativeDto)) throw new HttpException(400, "You're not initiativeDto");
 
-    return this.initiativeStore.createNewInitiative({ ...initiativeDto, userId: userId});
+    return this.initiativeStore.createNewInitiative({ ...initiativeDto, userId: userId, rewarded: false});
   }
 
   public async updateInitiative(initiativeId: number, userId: number, initiativeDto: CreateInitiativeDto): Promise<void> {
@@ -33,6 +33,10 @@ class InitiativeService {
   public async deleteInitiative(id: number, userId: number): Promise<void> {
     await this.initiativeStore.removeInitiative(id, userId);
     return;
+  }
+
+  public async markAsRewarded(initiativeId: number) {
+    await this.initiativeStore.markAsRewarded(initiativeId)
   }
 }
 

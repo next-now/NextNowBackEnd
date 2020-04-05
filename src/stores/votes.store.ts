@@ -5,7 +5,7 @@ class VotesStore {
 
     public async addVote(userId: number, initiativeId: number): Promise<void>
     {
-        await this.votes.create({userId, initiativeId});
+        await this.votes.findOrCreate({where:{userId: userId, initiativeId:initiativeId}});
     }
 
     public async removeVote(userId: number, initiativeId: number): Promise<void>
@@ -17,6 +17,12 @@ class VotesStore {
     {
         const res: any = await this.votes.findOne({where: {userId: userId, initiativeId: initiativeId}});
         return res !== null;
+    }
+
+    public async getVoteCount(initiativeId: number): Promise<number>
+    {
+        const res = await this.votes.findAndCountAll({where: {initiativeId: initiativeId}});
+        return res.count;
     }
 }
 export default VotesStore
