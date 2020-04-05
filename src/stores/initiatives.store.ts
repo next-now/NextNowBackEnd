@@ -19,13 +19,19 @@ class InitiativesStore {
 
     }
 
-    public async updateInitiative(initiativeData: Omit<Initiative, "id"|"userId">, id: number) : Promise<void> {
+    public async updateInitiative(initiativeData: Omit<Initiative, "id"|"userId"|"rewarded">, id: number) : Promise<void> {
         await this.initiatives.update(initiativeData, { where: { id: id } });
         return ;
     }
 
     public async removeInitiative(id: number, userId: number): Promise<void> {
        await this.initiatives.destroy({where: {id: id, userId: userId}});
+    }
+
+    public async markAsRewarded(initiativeId: number) {
+        const initiative: InitiativeModel = await this.initiatives.findOne( {where: {id: initiativeId}});
+        initiative.set({rewarded: true}, {});
+        await initiative.save();
     }
 }
 export default InitiativesStore

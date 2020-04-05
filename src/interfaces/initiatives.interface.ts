@@ -3,4 +3,5 @@ export interface Initiative {
   category: string;
   description: string;
   userId: number;
+  rewarded: boolean;
 }

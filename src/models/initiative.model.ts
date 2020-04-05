@@ -27,6 +27,10 @@ export default class Initiative extends Model<Initiative> {
   description: string;
 
   @AllowNull(false)
+  @Column({type: DataType.BOOLEAN, defaultValue: false})
+  rewarded: boolean;
+
+  @AllowNull(false)
   @ForeignKey(() => User)
   @Column
   userId: number;
