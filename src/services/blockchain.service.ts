@@ -42,8 +42,7 @@ class BlockchainService {
         };
 
         const reply = await this.api.post(path, payload, {headers: this.getHeaders()})
-        console.log(reply);
-        return "";
+        return uuidv4(); // no transaction
     }
 
     public async init(masterBalance: number): Promise<void> {
