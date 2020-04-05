@@ -25,14 +25,13 @@ class BlockchainService {
         return reply.data.result.uuid;
     }
 
-    public async getWalletBalance(walletId: string): Promise<string> {
+    public async getWalletBalance(walletId: string): Promise<number> {
         const path: string = `${process.env.BLOCKCHAIN_SERVICE_BASE_PATH}/functions-invoke/query`;
         const payload = {
             walletUUID: walletId
         };
         const reply = await this.api.post(path, payload, {headers: this.getHeaders()})
-        return Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
-
+        return reply.data.result.balance;
     }
 
     public async sendTokens(target: string, amount: number): Promise<string> {

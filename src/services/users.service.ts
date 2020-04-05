@@ -4,9 +4,11 @@ import HttpException from '../exceptions/HttpException';
 import {isEmptyObject} from '../utils/util';
 import UserStore from "../stores/userStore";
 import {User} from "../interfaces/users.interface";
+import BlockchainService from "./blockchain.service";
 
 class UserService {
   public usersStore = new UserStore();
+  public blockchainService = new BlockchainService();
 
   public static extractUserWithoutPassword(user: User): CreatedUser
   {
@@ -17,8 +19,10 @@ class UserService {
   public async findUserById(userId: number): Promise<CreatedUser> {
     const findUser: User = await this.usersStore.findUserById(userId);
     if (!findUser) throw new HttpException(409, "You're not user");
-
-    return UserService.extractUserWithoutPassword(findUser);
+    const balance:number = await  this.blockchainService.getWalletBalance(findUser.walletId);
+    const createdUser = UserService.extractUserWithoutPassword(findUser);
+    createdUser.balance = balance;
+    return createdUser;
   }
 
   public async createUser(userData: CreateUserDto, wallet: string): Promise<CreatedUser> {
