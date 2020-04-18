@@ -1,4 +1,15 @@
-import { AllowNull, AutoIncrement, Column, DataType, Model, PrimaryKey, Table } from 'sequelize-typescript';
+import {
+  AllowNull,
+  AutoIncrement,
+  BelongsToMany,
+  Column,
+  DataType,
+  Model,
+  PrimaryKey,
+  Table
+} from 'sequelize-typescript';
+import UserCategory from "./users-categories.model";
+import Category from "./categories.model";
 
 @Table({ modelName: 'Users', timestamps: true, paranoid: false })
 export default class User extends Model<User> {
@@ -63,4 +74,7 @@ export default class User extends Model<User> {
 
   @Column(DataType.DOUBLE)
   lon: number;
+
+  @BelongsToMany(() => Category, () => UserCategory)
+  categories: Category[];
 }
