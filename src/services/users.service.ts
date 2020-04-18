@@ -36,15 +36,18 @@ class UserService {
     const wallet = await this.blockchainService.createWallet();
     const {lat, lon} = await this.locationService.getLatLongForAddress(userData.address);
     const hashedPassword = await bcrypt.hash(userData.password, 10);
-    const createUserData: User = await this.usersStore.createNewUser({ ...userData, password: hashedPassword, walletId: wallet, lat: lat, lon:lon});
+    const createUserData: User = await this.usersStore.createNewUser({ ...userData, password: hashedPassword, walletId: wallet, lat: lat, lon:lon}, userData.categoriesIds);
     return UserService.extractUserWithoutPassword(createUserData);
   }
 
-  public async updateUser(userId: number, userData: User): Promise<CreatedUser> {
+  public async updateUser(userId: number, userData: CreateUserDto): Promise<CreatedUser> {
     if (isEmptyObject(userData)) throw new HttpException(400, "You're not userData");
 
-    const hashedPassword = await bcrypt.hash(userData.password, 10);
-    const updateUser: User = await this.usersStore.updateUser({ ...userData, password: hashedPassword }, userId);
+    if (userData.password)
+    {
+      userData.password = await bcrypt.hash(userData.password, 10)
+    }
+    const updateUser: User = await this.usersStore.updateUser(userData, userId, userData.categoriesIds);
     if (!updateUser) throw new HttpException(409, "You're not user");
 
    return UserService.extractUserWithoutPassword(updateUser);

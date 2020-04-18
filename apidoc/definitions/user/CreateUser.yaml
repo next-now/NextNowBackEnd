@@ -35,3 +35,7 @@ properties:
   address:
     type: string
     example: "5 Queen St, M5C 2L7, Canada"
+  categoriesIds:
+    type: array
+    items:
+      type: integer

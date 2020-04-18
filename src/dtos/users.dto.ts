@@ -26,6 +26,8 @@ export class CreateUserDto {
   @IsString()
   @Matches(/\d\d:\d\d/)
   public availabilityEndTime: string;
+
+  public categoriesIds: number[];
 }
 
 export class CreatedUser {
