@@ -1,0 +1,25 @@
+#CreateHelpRequest:
+type: object
+required:
+- title
+- description
+properties:
+  title:
+    type: string
+    example: "Help with shopping"
+  description:
+    type: string
+    example: "Need the following items from store:..."
+  expirationDate:
+    type: string
+    example: "2020-04-18"
+  durationInHours:
+    type: integer
+    example: 4
+  location:
+    type: string
+    example: "5 Queen St, M5C 2L7, Canada"
+  categoriesIds:
+    type: array
+    items:
+      type: integer

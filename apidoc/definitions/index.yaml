@@ -11,6 +11,10 @@ schemas:
     $ref: './initiatives/Initiative.yaml'
   CreateInitiative:
     $ref: './initiatives/CreateInitiative.yaml'
+  HelpRequest:
+    $ref: './helpRequests/HelpRequest.yaml'
+  CreateHelpRequest:
+    $ref: './helpRequests/CreateHelpRequest.yaml'
 
 securitySchemes:
   ApiJWTAuth:        # arbitrary name for the security scheme

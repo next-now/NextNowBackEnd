@@ -10,7 +10,7 @@ import {
 } from 'sequelize-typescript';
 import UserCategory from "./users-categories.model";
 import Category from "./categories.model";
-
+//TODO add NAME and BIO
 @Table({ modelName: 'Users', timestamps: true, paranoid: false })
 export default class User extends Model<User> {
   @PrimaryKey

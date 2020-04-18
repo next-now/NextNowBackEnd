@@ -14,6 +14,7 @@ import Category from "./categories.model";
 import User from "./users.model";
 import HelpRequestCategory from "./helprequests-categories.model";
 
+//TODO add another association with User for Givers
 @Table({ modelName: 'HelpRequests', timestamps: true, paranoid: false })
 export default class HelpRequest extends Model<HelpRequest> {
   @PrimaryKey

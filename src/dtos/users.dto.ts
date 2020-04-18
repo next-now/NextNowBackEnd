@@ -1,4 +1,4 @@
-import {IsString, IsEmail, IsNumber, IsBoolean, Matches} from 'class-validator';
+import {IsString, IsEmail, IsNumber, IsBoolean, Matches, IsArray} from 'class-validator';
 
 export class CreateUserDto {
   @IsEmail()
@@ -27,6 +27,7 @@ export class CreateUserDto {
   @Matches(/\d\d:\d\d/)
   public availabilityEndTime: string;
 
+  @IsArray()
   public categoriesIds: number[];
 }
 

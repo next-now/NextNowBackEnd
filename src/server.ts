@@ -7,6 +7,8 @@ import ApiDocRoute from './routes/apidoc.route';
 import validateEnv from './utils/validateEnv';
 import InitiativesRoute from "./routes/initiatives.route";
 import VotingRouter from "./routes/voting.route";
+import HelpRequest from "./models/help-requests.model";
+import HelpRequestsRoute from "./routes/help-requests.route";
 
 validateEnv();
 
@@ -16,6 +18,7 @@ const app = new App([
   new AuthRoute(),
   new InitiativesRoute(),
   new VotingRouter(),
+  new HelpRequestsRoute(),
   new ApiDocRoute()
 ]);
 

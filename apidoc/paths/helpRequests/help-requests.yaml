@@ -1,0 +1,13 @@
+post:
+  tags:
+  - Help Requests
+  summary: Create new Help request
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../definitions/helpRequests/CreateHelpRequest.yaml'
+  responses:
+    '201':
+      description: Created

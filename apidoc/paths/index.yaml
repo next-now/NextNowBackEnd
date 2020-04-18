@@ -13,3 +13,8 @@
 
 /vote/initiative/{id}:
   $ref: './votes/votes-with-id.yaml'
+
+/help-requests:
+  $ref: './helpRequests/help-requests.yaml'
+/help-requests/{id}:
+  $ref: './helpRequests/help-requests-with-id.yaml'

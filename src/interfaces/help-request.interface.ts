@@ -5,5 +5,7 @@ export interface HelpRequest {
   fulfilled: boolean;
   expirationDate: string;
   durationInHours: number;
-  location: string;
+  location?: string;
+  userId: number;
+  categoriesIds?: number[]
 }

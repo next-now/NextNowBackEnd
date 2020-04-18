@@ -2,7 +2,7 @@ import HelpRequestModel from '../models/help-requests.model';
 import Category from '../models/categories.model';
 import User from '../models/users.model';
 import {HelpRequest} from "../interfaces/help-request.interface";
-import {Op} from "sequelize";
+import Sequelize, {Op} from "sequelize";
 
 class HelpRequestsStore {
     private helpRequests = HelpRequestModel;
@@ -11,10 +11,21 @@ class HelpRequestsStore {
         return obj && obj.toJSON() as HelpRequest;
     }
 
-    public async createNewHelpRequest(helpRequestData: Omit<HelpRequest, "id">): Promise<HelpRequest> {
+    public async createNewHelpRequest(helpRequestData: Omit<HelpRequest, "id"> , categoriesIds:number[]): Promise<HelpRequest> {
         const helpRequest: HelpRequestModel = await this.helpRequests.create(helpRequestData);
+        await HelpRequestsStore.setHelpRequestCategories(helpRequest, categoriesIds);
         return HelpRequestsStore.extractPureJSONObject(helpRequest);
     }
+
+    private static async setHelpRequestCategories(helpRequest: HelpRequestModel, categoriesIds?: number[]): Promise<void> {
+        const cats = await Category.findAll({where: {id: categoriesIds}});
+        console.log(cats);
+        // @ts-ignore
+        await helpRequest.setCategories(cats);
+        await helpRequest.save();
+        console.log("saved for request " + helpRequest.id);
+    }
+
 
     public async findHelpRequestById(id: number): Promise<HelpRequest> {
         const user: HelpRequestModel = await this.helpRequests.findByPk(id, {
@@ -27,11 +38,14 @@ class HelpRequestsStore {
 
     }
 
-    public async updateHelpRequest(helpRequestData: Partial<Omit<HelpRequest, "id">>, id: number): Promise<HelpRequest> {
+    public async updateHelpRequest(helpRequestData: Partial<Omit<HelpRequest, "id">>, id: number, categoriesIds:number[]): Promise<HelpRequest> {
         await this.helpRequests.update(helpRequestData, {where: {id: id}});
         const helpR: HelpRequestModel = await this.helpRequests.findByPk(id);
+        if (helpRequestData.categoriesIds != null)
+        {
+            await HelpRequestsStore.setHelpRequestCategories(helpR, categoriesIds);
+        }
         return HelpRequestsStore.extractPureJSONObject(helpR);
-
     }
 
     public async deleteHelpRequest(id: number): Promise<void> {
@@ -39,7 +53,6 @@ class HelpRequestsStore {
     }
 
     public async getOpenHelpRequestsByFilter(categoriesIds: number[]): Promise<HelpRequest[]> {
-        const now:number = new Date.now() as number;
        const res:HelpRequestModel[]  = await this.helpRequests.findAll({
             include: [{
                 model: Category,
@@ -49,7 +62,7 @@ class HelpRequestsStore {
                     },
                     fulfilled: false,
                     expirationDate: {
-                        [Op.lt]: now
+                        [Op.lt]: Sequelize.literal('NOW()')
                     }
 
                 }

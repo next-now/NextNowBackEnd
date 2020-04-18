@@ -6,3 +6,5 @@
   description: Positive deeds by the community for the community
 - name: Votes
   description: Community votes fo initiatives
+- name: Help Requests
+  description: Reaching out to the community to ask for help

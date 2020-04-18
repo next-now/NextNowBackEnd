@@ -1,0 +1,7 @@
+#HelpRequest:
+  allOf:
+  - $ref: './CreateHelpRequest.yaml'
+  - type: object
+    properties:
+      id:
+        type: integer
