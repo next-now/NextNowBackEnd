@@ -1,10 +1,12 @@
-import { Sequelize } from 'sequelize-typescript';
+import {Sequelize} from 'sequelize-typescript';
 import User from './users.model';
 import Initiative from "./initiative.model";
 import Vote from "./votes.model";
 import Transaction from "./transaction.model";
 import Category from "./categories.model";
 import UserCategory from "./users-categories.model";
+import HelpRequest from "./help-requests.model";
+import HelpRequestCategory from "./helprequests-categories.model";
 
 export const sequelize = new Sequelize(
   process.env.MYSQL_DATABASE,
@@ -27,7 +29,7 @@ export const sequelize = new Sequelize(
   },
 );
 
-sequelize.addModels([User, Initiative, Vote, Transaction, Category, UserCategory]);
+sequelize.addModels([User, Initiative, Vote, Transaction, Category, UserCategory, HelpRequest, HelpRequestCategory]);
 
 sequelize.authenticate().catch((err: Error) => {
   console.error('Unable to connect to the database:', err);

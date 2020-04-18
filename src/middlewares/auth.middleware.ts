@@ -2,7 +2,7 @@ import { NextFunction, Response } from 'express';
 import * as jwt from 'jsonwebtoken';
 import HttpException from '../exceptions/HttpException';
 import {DataStoredInToken, RequestWithUser} from '../interfaces/auth.interface';
-import UserStore from "../stores/userStore";
+import UserStore from "../stores/user.store";
 
 async function authMiddleware(req: RequestWithUser, res: Response, next: NextFunction) {
   const token = req.header("Authorization");

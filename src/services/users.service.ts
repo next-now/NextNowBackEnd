@@ -2,7 +2,7 @@ import * as bcrypt from 'bcrypt';
 import {CreatedUser, CreateUserDto} from '../dtos/users.dto';
 import HttpException from '../exceptions/HttpException';
 import {isEmptyObject} from '../utils/util';
-import UserStore from "../stores/userStore";
+import UserStore from "../stores/user.store";
 import {User} from "../interfaces/users.interface";
 import BlockchainService from "./blockchain.service";
 import LocationService from "./location.service";

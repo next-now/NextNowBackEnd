@@ -6,7 +6,7 @@ import BlockchainService from "./blockchain.service";
 import TransactionStore from "../stores/transaction.store";
 import InitiativesStore from "../stores/initiatives.store";
 import {User} from "../interfaces/users.interface";
-import UserStore from "../stores/userStore";
+import UserStore from "../stores/user.store";
 
 class TransactionService {
   public blockchainService = new BlockchainService();
