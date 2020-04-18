@@ -25,19 +25,18 @@ class UsersController {
     } catch (error) {
       next(error);
     }
-  }
+  };
 
   public createUser = async (req: Request, res: Response, next: NextFunction) => {
     const userData: CreateUserDto = req.body;
 
     try {
-      const wallet = await this.blockchainService.createWallet();
-      const createUserData: CreatedUser = await this.userService.createUser(userData, wallet);
+      const createUserData: CreatedUser = await this.userService.createUser(userData);
       res.status(201).json({ data: createUserData, message: 'created' });
     } catch (error) {
       next(error);
     }
-  }
+  };
 
   public updateUser = async (req: RequestWithUser, res: Response, next: NextFunction) => {
     const userId: number = Number(req.params.id);
@@ -49,7 +48,7 @@ class UsersController {
     } catch (error) {
       next(error);
     }
-  }
+  };
 
   public deleteUser = async (req: RequestWithUser, res: Response, next: NextFunction) => {
     const userId: number = Number(req.params.id);

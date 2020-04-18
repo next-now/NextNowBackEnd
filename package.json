@@ -1,5 +1,5 @@
 {
-  "name": "NextNowBackEnd",
+  "name": "next-now-backend",
   "version": "0.0.0",
   "scripts": {
     "start": "cross-env NODE_ENV=production ts-node --transpile-only src/server.ts",
@@ -30,7 +30,7 @@
     "swagger-jsdoc": "^4.0.0",
     "swagger-ui-express": "^4.1.4",
     "ts-jest": "^25.3.0",
-    "ts-node": "^8.8.1",
+    "ts-node": "^8.8.2",
     "typescript": "^3.8.3",
     "uuid": "^7.0.3",
     "yamljs": "^0.3.0"

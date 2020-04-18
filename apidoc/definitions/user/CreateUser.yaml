@@ -18,3 +18,20 @@ properties:
     type: string
     format: password
     example: "pretty strong password"
+  giverProfileActive:
+    type: boolean
+    example: false
+  hasCar:
+    type: boolean
+    example: true
+  availabilityStartTime:
+    type: string
+    format: "hh:mm"
+    example: "15:30"
+  availabilityEndTime:
+    type: string
+    format: "hh:mm"
+    example: "18:30"
+  address:
+    type: string
+    example: "5 Queen St, M5C 2L7, Canada"

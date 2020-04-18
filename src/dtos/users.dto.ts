@@ -1,4 +1,4 @@
-import {IsString, IsEmail, IsNumber} from 'class-validator';
+import {IsString, IsEmail, IsNumber, IsBoolean, Matches} from 'class-validator';
 
 export class CreateUserDto {
   @IsEmail()
@@ -9,6 +9,23 @@ export class CreateUserDto {
 
   @IsString()
   public username: string;
+
+  @IsBoolean()
+  giverProfileActive: boolean;
+
+  @IsBoolean()
+  public hasCar: boolean;
+
+  @IsString()
+  public address: string;
+
+  @IsString()
+  @Matches(/\d\d:\d\d/)
+  public availabilityStartTime: string;
+
+  @IsString()
+  @Matches(/\d\d:\d\d/)
+  public availabilityEndTime: string;
 }
 
 export class CreatedUser {
@@ -25,4 +42,21 @@ export class CreatedUser {
 
   @IsNumber()
   public balance?: number;
+
+  @IsBoolean()
+  giverProfileActive: boolean;
+
+  @IsBoolean()
+  public hasCar: boolean;
+
+  @IsString()
+  public address?: string;
+
+  @IsString()
+  @Matches(/\d\d:\d\d/)
+  public availabilityStartTime?: string;
+
+  @IsString()
+  @Matches(/\d\d:\d\d/)
+  public availabilityEndTime?: string;
 }
