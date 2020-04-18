@@ -34,15 +34,15 @@ export default class HelpRequest extends Model<HelpRequest> {
   fulfilled: boolean;
 
   @AllowNull(false)
-  @Column({type: DataType.DATE, defaultValue: false})
+  @Column({type: DataType.DATE})
   expirationDate: string;
 
   @AllowNull(false)
-  @Column({type: DataType.NUMBER, defaultValue: false})
+  @Column({type: DataType.INTEGER})
   durationInHours: number;
 
   @AllowNull(false)
-  @Column({type: DataType.STRING, defaultValue: false})
+  @Column({type: DataType.STRING})
   location: string;
 
   @AllowNull(false)
