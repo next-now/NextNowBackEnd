@@ -11,7 +11,7 @@ import {
 } from 'sequelize-typescript';
 import User from "./users.model";
 
-@Table({ modelName: 'initiative', timestamps: true, paranoid: false })
+@Table({ modelName: 'Initiatives', timestamps: true, paranoid: false })
 export default class Initiative extends Model<Initiative> {
   @PrimaryKey
   @AutoIncrement

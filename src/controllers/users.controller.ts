@@ -10,7 +10,7 @@ class UsersController {
   public userService = new UserService();
   public blockchainService = new BlockchainService();
 
-  private static verifyUserHasAccess(id: number, user: User): void {
+  private static verifyUserHasAccess(id: number, user: Pick<User, "id">): void {
     if (user.id !== id)
       throw new HttpException(403, "You don't have access to this resource");
   }
@@ -19,37 +19,35 @@ class UsersController {
     const userId: number = Number(req.params.id);
 
     try {
-      UsersController.verifyUserHasAccess(userId, req.user);
       const findOneUserData: CreatedUser = await this.userService.findUserById(userId);
       res.status(200).json({ data: findOneUserData, message: 'findOne' });
     } catch (error) {
       next(error);
     }
-  }
+  };
 
   public createUser = async (req: Request, res: Response, next: NextFunction) => {
     const userData: CreateUserDto = req.body;
 
     try {
-      const wallet = await this.blockchainService.createWallet();
-      const createUserData: CreatedUser = await this.userService.createUser(userData, wallet);
+      const createUserData: CreatedUser = await this.userService.createUser(userData);
       res.status(201).json({ data: createUserData, message: 'created' });
     } catch (error) {
       next(error);
     }
-  }
+  };
 
   public updateUser = async (req: RequestWithUser, res: Response, next: NextFunction) => {
     const userId: number = Number(req.params.id);
-    const userData: User = req.body;
+    const userData: CreateUserDto = req.body;
     try {
-      UsersController.verifyUserHasAccess(userId, userData);
+      UsersController.verifyUserHasAccess(userId, req.user);
       const updateUserData: CreatedUser = await this.userService.updateUser(userId, userData);
       res.status(200).json({ data: updateUserData, message: 'updated' });
     } catch (error) {
       next(error);
     }
-  }
+  };
 
   public deleteUser = async (req: RequestWithUser, res: Response, next: NextFunction) => {
     const userId: number = Number(req.params.id);

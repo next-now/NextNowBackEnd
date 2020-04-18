@@ -4,4 +4,11 @@ export interface User {
   password: string;
   walletId: string;
   username: string;
+  giverProfileActive: boolean;
+  hasCar: boolean;
+  availabilityStartTime?: string;
+  availabilityEndTime?: string;
+  address?: string;
+  lat?: number;
+  lon?: number;
 }
