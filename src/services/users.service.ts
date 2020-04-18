@@ -5,10 +5,12 @@ import {isEmptyObject} from '../utils/util';
 import UserStore from "../stores/userStore";
 import {User} from "../interfaces/users.interface";
 import BlockchainService from "./blockchain.service";
+import LocationService from "./location.service";
 
 class UserService {
   public usersStore = new UserStore();
-  public blockchainService = new BlockchainService();
+  private blockchainService = new BlockchainService();
+  private locationService = new LocationService();
 
   public static extractUserWithoutPassword(user: User): CreatedUser
   {
@@ -25,23 +27,27 @@ class UserService {
     return createdUser;
   }
 
-  public async createUser(userData: CreateUserDto, wallet: string): Promise<CreatedUser> {
+  public async createUser(userData: CreateUserDto): Promise<CreatedUser> {
     if (isEmptyObject(userData)) throw new HttpException(400, "You're not userData");
 
     const findUser: User = await this.usersStore.findUserByEmailOrUsername(userData.email, userData.username);
     if (findUser && findUser.email === userData.email) throw new HttpException(409, `Your email ${userData.email} already exists`);
     if (findUser && findUser.username === userData.username) throw new HttpException(409, `Your username ${userData.username} already exists`);
-
+    const wallet = await this.blockchainService.createWallet();
+    const {lat, lon} = await this.locationService.getLatLongForAddress(userData.address);
     const hashedPassword = await bcrypt.hash(userData.password, 10);
-    const createUserData: User = await this.usersStore.createNewUser({ ...userData, password: hashedPassword, walletId: wallet});
+    const createUserData: User = await this.usersStore.createNewUser({ ...userData, password: hashedPassword, walletId: wallet, lat: lat, lon:lon}, userData.categoriesIds);
     return UserService.extractUserWithoutPassword(createUserData);
   }
 
-  public async updateUser(userId: number, userData: User): Promise<CreatedUser> {
+  public async updateUser(userId: number, userData: CreateUserDto): Promise<CreatedUser> {
     if (isEmptyObject(userData)) throw new HttpException(400, "You're not userData");
 
-    const hashedPassword = await bcrypt.hash(userData.password, 10);
-    const updateUser: User = await this.usersStore.updateUser({ ...userData, password: hashedPassword }, userId);
+    if (userData.password)
+    {
+      userData.password = await bcrypt.hash(userData.password, 10)
+    }
+    const updateUser: User = await this.usersStore.updateUser(userData, userId, userData.categoriesIds);
     if (!updateUser) throw new HttpException(409, "You're not user");
 
    return UserService.extractUserWithoutPassword(updateUser);
