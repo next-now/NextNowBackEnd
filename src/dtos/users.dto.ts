@@ -11,24 +11,24 @@ export class CreateUserDto {
   public username: string;
 
   @IsBoolean()
-  giverProfileActive?: boolean;
+  giverProfileActive: boolean;
 
   @IsBoolean()
-  public hasCar?: boolean;
+  public hasCar: boolean;
 
   @IsString()
-  public address?: string;
-
-  @IsString()
-  @Matches(/\d\d:\d\d/)
-  public availabilityStartTime?: string;
+  public address: string;
 
   @IsString()
   @Matches(/\d\d:\d\d/)
-  public availabilityEndTime?: string;
+  public availabilityStartTime: string;
+
+  @IsString()
+  @Matches(/\d\d:\d\d/)
+  public availabilityEndTime: string;
 
   @IsArray()
-  public categoriesIds?: number[];
+  public categoriesIds: number[];
 }
 
 export class CreatedUser {
@@ -44,7 +44,7 @@ export class CreatedUser {
   public username: string;
 
   @IsNumber()
-  public balance?: number;
+  public balance: number;
 
   @IsBoolean()
   giverProfileActive: boolean;
@@ -53,13 +53,13 @@ export class CreatedUser {
   public hasCar: boolean;
 
   @IsString()
-  public address?: string;
+  public address: string;
 
   @IsString()
   @Matches(/\d\d:\d\d/)
-  public availabilityStartTime?: string;
+  public availabilityStartTime: string;
 
   @IsString()
   @Matches(/\d\d:\d\d/)
-  public availabilityEndTime?: string;
+  public availabilityEndTime: string;
 }
