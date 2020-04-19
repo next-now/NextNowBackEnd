@@ -64,6 +64,17 @@ class HelpRequestController {
       next(error);
     }
   }
+
+  public geOpenRequests = async (req: RequestWithUser, res: Response, next: NextFunction) => {
+    const id: number = Number(req.params.id);
+    try {
+      const request = await this.helpRequestsService.geOpenRequests();
+
+      res.status(200).json({data: request});
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 export default HelpRequestController;

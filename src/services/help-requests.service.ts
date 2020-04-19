@@ -36,6 +36,9 @@ class HelpRequestsService {
     return;
   }
 
+  public async geOpenRequests() {
+        return  this.helpRequestStore.getOpenHelpRequestsByFilter([1,2,3,4]);
+    }
 }
 
 export default HelpRequestsService;
