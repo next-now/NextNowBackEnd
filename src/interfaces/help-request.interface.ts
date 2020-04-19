@@ -6,6 +6,8 @@ export interface HelpRequest {
   expirationDate: string;
   durationInHours: number;
   location?: string;
+  lat?: number;
+  lon?: number;
   userId: number;
-  categoriesIds?: number[]
+  categoriesIds: number[]
 }

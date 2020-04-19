@@ -5,6 +5,7 @@ import HttpException from "../exceptions/HttpException";
 import HelpRequestsService from "../services/help-requests.service";
 import {HelpRequest} from "../interfaces/help-request.interface";
 import {CreateHelpRequestDto} from "../dtos/help-requests.dto";
+import LocationService from "../services/location.service";
 
 class HelpRequestController {
   public helpRequestsService = new HelpRequestsService();
@@ -26,8 +27,11 @@ class HelpRequestController {
   }
 
   public createHelpRequest = async (req: RequestWithUser, res: Response, next: NextFunction) => {
-    const helpRequestDto: CreateHelpRequestDto = req.body;
+    const helpRequestDto: HelpRequest = req.body;
     const user: User = req.user;
+    const {lat, lon } = await new LocationService().getLatLongForAddress(helpRequestDto.location)
+    helpRequestDto.lat = lat;
+    helpRequestDto.lon = lon;
 
     try {
       const request: HelpRequest = await this.helpRequestsService.createHelpRequest(helpRequestDto, user.id);

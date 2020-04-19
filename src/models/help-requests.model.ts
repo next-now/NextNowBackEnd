@@ -47,6 +47,14 @@ export default class HelpRequest extends Model<HelpRequest> {
   location: string;
 
   @AllowNull(false)
+  @Column({type: DataType.INTEGER})
+  lat: number;
+
+  @AllowNull(false)
+  @Column({type: DataType.INTEGER})
+  lon: number;
+
+  @AllowNull(false)
   @ForeignKey(() => User)
   @Column
   userId: number;

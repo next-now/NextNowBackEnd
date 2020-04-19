@@ -54,17 +54,18 @@ class HelpRequestsStore {
 
     public async getOpenHelpRequestsByFilter(categoriesIds: number[]): Promise<HelpRequest[]> {
        const res:HelpRequestModel[]  = await this.helpRequests.findAll({
-            include: [{
+           where:{
+               fulfilled: false,
+               // expirationDate: {
+               //     [Op.lt]: Sequelize.literal('NOW()')
+               // }
+           },
+           include: [{
                 model: Category,
                 where: {
                     id: {
                         [Op.in]: categoriesIds
-                    },
-                    fulfilled: false,
-                    expirationDate: {
-                        [Op.lt]: Sequelize.literal('NOW()')
                     }
-
                 }
             }]
         });
