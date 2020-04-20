@@ -62,12 +62,13 @@ class HelpRequestsStore {
            },
            include: [{
                 model: Category,
+               required: false,
                 where: {
                     id: {
                         [Op.in]: categoriesIds
                     }
                 }
-            }]
+            }, User]
         });
        return res.map( (obj: HelpRequestModel) => HelpRequestsStore.extractPureJSONObject(obj))
     }
