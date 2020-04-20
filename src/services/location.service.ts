@@ -10,7 +10,7 @@ class LocationService {
     public async getLatLongForAddress(address: string): Promise<{lat: number, lon: number}> {
         console.log(`getting location for ${address}`);
         try {
-       const reply:any = await this.api.get(`https://locationiq.org/v1/search.php?key=${process.env.GEO_API_TOKEN}&q=${address}&format=json`);
+       const reply:any = await this.api.get(`https://locationiq.org/v1/search.php?key=${process.env.GEO_API_TOKEN}&q=${encodeURI(address)}&format=json`);
        const {lat, lon} = reply.data[0];
 
        return {lat, lon}
