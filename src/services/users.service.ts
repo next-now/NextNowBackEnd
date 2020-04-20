@@ -36,7 +36,7 @@ class UserService {
     const wallet = await this.blockchainService.createWallet();
     const {lat, lon} = await this.locationService.getLatLongForAddress(userData.address);
     const hashedPassword = await bcrypt.hash(userData.password, 10);
-    const createUserData: User = await this.usersStore.createNewUser({ ...userData, password: hashedPassword, walletId: wallet, lat: lat, lon:lon}, userData.categoriesIds);
+    const createUserData: User = await this.usersStore.createNewUser({ ...userData, password: hashedPassword, walletId: wallet, lat: lat, lon:lon, balance: 0}, userData.categoriesIds);
     return UserService.extractUserWithoutPassword(createUserData);
   }
 

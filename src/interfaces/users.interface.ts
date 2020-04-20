@@ -3,6 +3,7 @@ export interface User {
   email: string;
   password: string;
   walletId: string;
+  balance: number;
   username: string;
   giverProfileActive: boolean;
   hasCar: boolean;

@@ -47,19 +47,19 @@ export class CreatedUser {
   public balance: number;
 
   @IsBoolean()
-  giverProfileActive: boolean;
+  giverProfileActive?: boolean;
 
   @IsBoolean()
-  public hasCar: boolean;
+  public hasCar?: boolean;
 
   @IsString()
-  public address: string;
-
-  @IsString()
-  @Matches(/\d\d:\d\d/)
-  public availabilityStartTime: string;
+  public address?: string;
 
   @IsString()
   @Matches(/\d\d:\d\d/)
-  public availabilityEndTime: string;
+  public availabilityStartTime?: string;
+
+  @IsString()
+  @Matches(/\d\d:\d\d/)
+  public availabilityEndTime?: string;
 }
