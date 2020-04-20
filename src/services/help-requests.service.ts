@@ -1,15 +1,13 @@
 import HttpException from '../exceptions/HttpException';
-import InitiativeService from "./initiative.service";
-import {Initiative} from "../interfaces/initiatives.interface";
-import VotesStore from "../stores/votes.store";
-import TransactionService from "./transaction.service";
-import {CreateInitiativeDto} from "../dtos/initiatives.dto";
 import {isEmptyObject} from "../utils/util";
 import HelpRequestsStore from "../stores/help-requests.store";
 import {HelpRequest} from "../interfaces/help-request.interface";
 import {CreateHelpRequestDto} from "../dtos/help-requests.dto";
 
 class HelpRequestsService {
+  private logger(message: string): void {
+    console.log("[Help-Request-Service]", message);
+  }
   private helpRequestStore = new HelpRequestsStore();
 
   public async findHelpRequestById(id: number): Promise<HelpRequest> {
@@ -21,7 +19,7 @@ class HelpRequestsService {
 
   public async createHelpRequest(helpRequestDto: CreateHelpRequestDto, userId: number): Promise<HelpRequest> {
     if (isEmptyObject(helpRequestDto)) throw new HttpException(400, "You're not helpRequestDto");
-
+    this.logger("creating help request with " + JSON.stringify(helpRequestDto))
     return this.helpRequestStore.createNewHelpRequest({...helpRequestDto, userId, fulfilled:false} , helpRequestDto.categoriesIds);
   }
 
